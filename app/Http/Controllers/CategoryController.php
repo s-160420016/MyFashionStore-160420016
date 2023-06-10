@@ -31,6 +31,20 @@ class CategoryController extends Controller
         // return view('product.index', ['data' => $queryBuilder]);
     }
 
+    public function showProduct($category_id)
+    {
+        $data=Category::find($category_id);
+        $numberOfData=$data->products->count();
+        return view('category.listproduct', compact('data', 'numberOfData'));
+    }
+
+    public function averagePrice()
+    {
+        $data=DB::select(DB::raw('SELECT c.name, AVG(p.price) as avg_price FROM products p RIGHT JOIN categories c ON p.category_id=c.id GROUP BY c.id'));
+        $numberOfData=count($data);
+        return view('category.averageprice', compact('data', 'numberOfData'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

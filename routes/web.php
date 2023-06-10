@@ -18,6 +18,12 @@ use App\Http\Controllers\CategoryController;
 Route::resource('category', CategoryController::class);
 Route::resource('product', ProductController::class);
 
+Route::get('/report/showclothes/{category_id}', [CategoryController::class, 'showProduct'])->name('reportShowProduct');
+
+Route::get('/report/category/averageprice', [CategoryController::class, 'averagePrice'])->name('reportShowAverage');
+
+Route::get('/report/product/showleaststock', [ProductController::class, 'leastStock'])->name('reportShowLeastStockPerSupplier');
+
 Route::get('/', function () {
     return view('welcome');
 });

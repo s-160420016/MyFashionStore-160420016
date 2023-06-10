@@ -58,9 +58,24 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show($id)
     {
-        //
+        // Eloquent Model
+        $eloquentSpecified=Product::find($id);
+        // dd($eloquentSpecified);
+
+        // Query Builder
+        $queryBuilderSpecified=DB::table('products')->where('id', $id)->first();
+        // dd($queryBuilderSpecified);
+
+        return view('product.show', compact('eloquentSpecified'));
+    }
+
+    public function leastStock()
+    {
+        $data=DB::select(DB::raw("SELECT s.name, SUM(p.stock) AS sum_stock FROM suppliers s LEFT JOIN products p ON s.id=p.supplier_id GROUP BY s.id ORDER BY sum_stock ASC"));
+        $numberOfData=count($data);
+        return view('product.leaststock', compact('data', 'numberOfData'));
     }
 
     /**
