@@ -15,6 +15,9 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $this->call(CategorySeeder::class);
+        $this->call(SupplierSeeder::class);
+
+        // Seed category and supplier table first, then migrate add supplierid column. Finally run this seeder.
         $this->call(ProductSeeder::class);
     }
 }
