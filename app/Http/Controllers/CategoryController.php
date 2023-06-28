@@ -65,7 +65,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('category.formcreate');
     }
 
     /**
@@ -76,7 +76,11 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = new Category();
+        $data->name = $request->get('categoryName');
+        $data->description = $request->get('categoryDescription');
+        $data->save();
+        return redirect()->route('category.index')->with('status', 'Horray!! New category has been inserted.');
     }
 
     /**

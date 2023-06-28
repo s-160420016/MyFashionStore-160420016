@@ -5,6 +5,11 @@
     <body>
         <div class="container">
             <h2>Transaksi</h2>
+            @if (session('status'))
+                <div class="alert alert-success">{{ session('status') }}</div>
+            @endif
+
+            <a href="{{ route('transaction.create') }}" class="btn btn-success">+ New Transaction</a>
             <table class="table">
                 <thead>
                     <tr>

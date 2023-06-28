@@ -15,7 +15,20 @@ class BuyerController extends Controller
      */
     public function index()
     {
-        //
+        // Raw Query
+        $rawQuery=DB::select(DB::raw("SELECT * FROM buyers"));
+
+        // Query Builder
+        $queryBuilder=DB::table('buyers')->get();
+
+        // Eloquent Model
+        $queryModel=Buyer::all();
+
+        // compact() -> $queryBuilder will be passed as it is. Can be accessed by calling it name in product.index
+        return view('buyer.index', compact('queryBuilder'));
+
+        // using array -> $query builder will be passed as an array with index/accesssor 'data'. Can be accessed by calling 'data' in product.index
+        // return view('product.index', ['data' => $queryBuilder]);
     }
 
     /**
@@ -25,7 +38,7 @@ class BuyerController extends Controller
      */
     public function create()
     {
-        //
+        return view('buyer.formcreate');
     }
 
     /**
@@ -36,7 +49,11 @@ class BuyerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = new Buyer();
+        $data->name = $request->get('buyerName');
+        $data->address = $request->get('buyerAddress');
+        $data->save();
+        return redirect()->route('buyer.index')->with('status', 'Horray!! New buyer has been inserted.');
     }
 
     /**

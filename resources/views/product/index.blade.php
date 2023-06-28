@@ -10,6 +10,12 @@
                     <a href="#" onclick="mostExpensiveProduct()"><i class="icon-bulb"></a></i>
             </p>
 
+            @if (session('status'))
+                <div class="alert alert-success">{{ session('status') }}</div>
+            @endif
+
+            <a href="{{ route('product.create') }}" class="btn btn-success">+ New Product</a>
+
             <div id='mostExpensive'></div>
             <table class="table">
                 <thead>

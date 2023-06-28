@@ -4,12 +4,14 @@
 
     <body>
         <div class="container">
-            <h2>Supplier</h2>
+            <h2>Buyer</h2>
+
             @if (session('status'))
                 <div class="alert alert-success">{{ session('status') }}</div>
             @endif
 
-            <a href="{{ route('supplier.create') }}" class="btn btn-success">+ New Supplier</a>
+            <a href="{{ route('buyer.create') }}" class="btn btn-success">+ New Buyer</a>
+
             <table class="table">
                 <thead>
                     <tr>
@@ -21,13 +23,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($queryBuilder as $supplier)
+                    @foreach ($queryBuilder as $buyer)
                         <tr>
-                            <td>{{ $supplier->id }}</td>
-                            <td>{{ $supplier->name }}</td>
-                            <td>{{ $supplier->address }}</td>
-                            <td>{{ $supplier->created_at }}</td>
-                            <td>{{ $supplier->updated_at }}</td>
+                            <td>{{ $buyer->id }}</td>
+                            <td>{{ $buyer->name }}</td>
+                            <td>{{ $buyer->address }}</td>
+                            <td>{{ $buyer->created_at }}</td>
+                            <td>{{ $buyer->updated_at }}</td>
                         </tr>
                     @endforeach
                 </tbody>

@@ -494,6 +494,11 @@ License: You must have a valid license purchased only from themeforest(the above
 					</a>
 					<ul class="sub-menu">
 						<li>
+							<a href="{{ url('buyer') }}">
+							<i class="icon-anchor"></i>
+							Buyer</a>
+						</li>
+						<li>
 							<a href="{{ url('supplier') }}">
 							<i class="icon-anchor"></i>
 							Supplier</a>
@@ -507,6 +512,11 @@ License: You must have a valid license purchased only from themeforest(the above
 							<a href="{{ url('product') }}">
 							<i class="icon-pin"></i>
 							Product</a>
+						</li>
+						<li>
+							<a href="{{ url('transaction') }}">
+							<i class="icon-pin"></i>
+							Transaction</a>
 						</li>
 					</ul>
 				</li>

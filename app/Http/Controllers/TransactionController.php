@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Buyer;
+use App\Models\Product;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -38,7 +40,10 @@ class TransactionController extends Controller
      */
     public function create()
     {
-        //
+        $buyerList = Buyer::all();
+        $productList = Product::all();
+
+        return view('transaction.formcreate', compact('buyerList', 'productList'));
     }
 
     /**
@@ -49,7 +54,17 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $transaction = new Transaction();
+        $transaction->user_id = $request->user;
+        $transaction->buyer_id = $request->buyer;
+        $transaction->save();
+
+        $product = Product::find($request->product);
+
+        $transaction->products()->attach($request->product, ['quantity' => $request->productQuantity, 'price' => $product->price]);
+        $transaction->save;
+
+        return redirect()->route('transaction.index')->with('status', 'Horray!! New transaction has been inserted.');
     }
 
     /**

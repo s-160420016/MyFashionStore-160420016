@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -38,7 +40,10 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $categoryList = Category::all();
+        $supplierList = Supplier::all();
+
+        return view('product.formcreate', compact('categoryList', 'supplierList'));
     }
 
     /**
@@ -49,7 +54,17 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = new Product();
+        $product->name = $request->productName;
+        $product->price = $request->productPrice;
+        $product->stock = $request->productStock;
+        $product->production_price = $request->productProductionPrice;
+        $product->category_id = $request->productCategory;
+        $product->supplier_id = $request->productSupplier;
+        $product->image = $request->productImage;
+        $product->save();
+
+        return redirect()->route('product.index')->with('status', 'Horray!! New product has been inserted.');
     }
 
     /**

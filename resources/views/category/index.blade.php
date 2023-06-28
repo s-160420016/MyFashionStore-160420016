@@ -8,6 +8,12 @@
             <p>Our category product here....
                 <a class="btn btn-default" data-toggle="modal" href="#disclaimer">Disclaimer</a>
             </p>
+
+            @if (session('status'))
+                <div class="alert alert-success">{{ session('status') }}</div>
+            @endif
+
+            <a href="{{ route('category.create') }}" class="btn btn-success">+ New Category</a>
             <table class="table">
                 <thead>
                     <tr>

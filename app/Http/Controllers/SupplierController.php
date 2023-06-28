@@ -38,7 +38,7 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        //
+        return view('supplier.formcreate');
     }
 
     /**
@@ -49,7 +49,11 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = new Supplier();
+        $data->name = $request->get('supplierName');
+        $data->address = $request->get('supplierAddress');
+        $data->save();
+        return redirect()->route('supplier.index')->with('status', 'Horray!! New supplier has been inserted.');
     }
 
     /**

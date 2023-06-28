@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BuyerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
@@ -17,6 +18,7 @@ use App\Http\Controllers\TransactionController;
 |
 */
 
+Route::resource('buyer', BuyerController::class);
 Route::resource('category', CategoryController::class);
 Route::resource('product', ProductController::class);
 Route::resource('supplier', SupplierController::class);
