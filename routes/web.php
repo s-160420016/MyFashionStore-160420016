@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,7 @@ use App\Http\Controllers\SupplierController;
 Route::resource('category', CategoryController::class);
 Route::resource('product', ProductController::class);
 Route::resource('supplier', SupplierController::class);
+Route::resource('transaction', TransactionController::class);
 
 Route::get('/report/showclothes/{category_id}', [CategoryController::class, 'showProduct'])->name('reportShowProduct');
 
@@ -31,6 +33,8 @@ Route::post('/product/showInfo', [ProductController::class,'showInfo'])->name('p
 Route::post('/product/mostExpensive', [ProductController::class,'mostExpensive'])->name('products.mostExpensive');
 
 Route::post('/category/showproducts', [CategoryController::class,'showProducts'])->name('category.showProducts');
+
+Route::post('/transaction/detailtransaction', [TransactionController::class,'detailTransaction'])->name('transaction.detailTransaction');
 
 Route::get('/', function () {
     return view('layout.example');
