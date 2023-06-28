@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SupplierController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,7 @@ use App\Http\Controllers\CategoryController;
 
 Route::resource('category', CategoryController::class);
 Route::resource('product', ProductController::class);
+Route::resource('supplier', SupplierController::class);
 
 Route::get('/report/showclothes/{category_id}', [CategoryController::class, 'showProduct'])->name('reportShowProduct');
 
@@ -25,7 +27,7 @@ Route::get('/report/category/averageprice', [CategoryController::class, 'average
 Route::get('/report/product/showleaststock', [ProductController::class, 'leastStock'])->name('reportShowLeastStockPerSupplier');
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layout.example');
 });
 
 Route::get('/kategori/{kategori?}', function ($kategori = "")

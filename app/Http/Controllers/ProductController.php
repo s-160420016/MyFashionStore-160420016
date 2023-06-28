@@ -25,7 +25,7 @@ class ProductController extends Controller
         $queryModel=Product::all();
 
         // compact() -> $queryBuilder will be passed as it is. Can be accessed by calling it name in product.index
-        return view('product.index', compact('queryBuilder'));
+        return view('product.index', compact('queryModel'));
 
         // using array -> $query builder will be passed as an array with index/accesssor 'data'. Can be accessed by calling 'data' in product.index
         // return view('product.index', ['data' => $queryBuilder]);
