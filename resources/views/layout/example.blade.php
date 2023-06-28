@@ -102,7 +102,13 @@
         <li>
             <a href="#">Dashboard</a>
         </li>
+        <li>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="#" onclick="showInfo()">
+            <i class="icon-bulb"></a></i>
+        </li>
     </ul>
+    <div id='showinfo'></div>
     <div class="page-toolbar">
         <div id="dashboard-report-range" class="pull-right tooltips btn btn-fit-height btn-primary"
             data-container="body" data-placement="bottom" data-original-title="Change dashboard date range">
@@ -1965,4 +1971,23 @@
         <!-- END PORTLET-->
     </div>
 </div>
+@endsection
+
+@section('javascript')
+    <script>
+        function showInfo()
+        {
+            $.ajax(
+            {
+                type:'POST',
+                url:'{{ route("products.showInfo") }}',
+                data:'_token=<?php echo csrf_token() ?>',
+                success: function(data)
+                {
+                    $('#showinfo').html(data.msg)
+                }
+            }
+            );
+        }
+    </script>
 @endsection

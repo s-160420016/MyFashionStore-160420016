@@ -26,6 +26,12 @@ Route::get('/report/category/averageprice', [CategoryController::class, 'average
 
 Route::get('/report/product/showleaststock', [ProductController::class, 'leastStock'])->name('reportShowLeastStockPerSupplier');
 
+Route::post('/product/showInfo', [ProductController::class,'showInfo'])->name('products.showInfo');
+
+Route::post('/product/mostExpensive', [ProductController::class,'mostExpensive'])->name('products.mostExpensive');
+
+Route::post('/category/showproducts', [CategoryController::class,'showProducts'])->name('category.showProducts');
+
 Route::get('/', function () {
     return view('layout.example');
 });

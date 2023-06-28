@@ -46,6 +46,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <link href="{{ asset('conquer/css/custom.css') }}" rel="stylesheet" type="text/css"/>
 <!-- END THEME STYLES -->
 <link rel="shortcut icon" href="favicon.ico"/>
+@yield('javascript')
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
@@ -56,7 +57,7 @@ License: You must have a valid license purchased only from themeforest(the above
 	<div class="header-inner">
 		<!-- BEGIN LOGO -->
 		<div class="page-logo">
-            <a href="index.html">
+            <a href="/">
                 <img src="{{ asset('conquer/img/logo.png') }}" alt="logo"/>
             </a>
         </div>
@@ -471,7 +472,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
 				</li>
 				<li class="sidebar-search-wrapper">
-					<form class="search-form" role="form" action="index.html" method="get">
+					<form class="search-form" role="form" action="/" method="get">
 						<div class="input-icon right">
 							<i class="icon-magnifier"></i>
 							<input type="text" class="form-control" name="query" placeholder="Search...">

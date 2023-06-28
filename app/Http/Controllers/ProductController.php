@@ -16,13 +16,13 @@ class ProductController extends Controller
     public function index()
     {
         // Raw Query
-        $rawQuery=DB::select(DB::raw("SELECT * FROM products"));
+        $rawQuery = DB::select(DB::raw("SELECT * FROM products"));
 
         // Query Builder
-        $queryBuilder=DB::table('products')->get();
+        $queryBuilder = DB::table('products')->get();
 
         // Eloquent Model
-        $queryModel=Product::all();
+        $queryModel = Product::all();
 
         // compact() -> $queryBuilder will be passed as it is. Can be accessed by calling it name in product.index
         return view('product.index', compact('queryModel'));
@@ -61,20 +61,47 @@ class ProductController extends Controller
     public function show($id)
     {
         // Eloquent Model
-        $eloquentSpecified=Product::find($id);
+        $eloquentSpecified = Product::find($id);
         // dd($eloquentSpecified);
 
         // Query Builder
-        $queryBuilderSpecified=DB::table('products')->where('id', $id)->first();
+        $queryBuilderSpecified = DB::table('products')->where('id', $id)->first();
         // dd($queryBuilderSpecified);
 
         return view('product.show', compact('eloquentSpecified'));
     }
 
+    public function showInfo()
+    {
+        return response()->json
+        (
+            array
+            (
+                'status' => 'oke',
+                'msg' => "<div class='alert alert-info'>Did you know? <br>This message is sent by a Controller.</div>"
+            ), 200
+        );
+    }
+
+    public function mostExpensive()
+    {
+        $queryModel = Product::orderBy('price', 'DESC')->first();
+
+        return response()->json
+        (
+            array
+            (
+                'status' => 'oke',
+                'msg' => "<div class='alert alert-info'>Most expensive product is $queryModel->name.</div>"
+            ), 200
+        );
+
+    }
+
     public function leastStock()
     {
-        $data=DB::select(DB::raw("SELECT s.name, SUM(p.stock) AS sum_stock FROM suppliers s LEFT JOIN products p ON s.id=p.supplier_id GROUP BY s.id ORDER BY sum_stock ASC"));
-        $numberOfData=count($data);
+        $data = DB::select(DB::raw("SELECT s.name, SUM(p.stock) AS sum_stock FROM suppliers s LEFT JOIN products p ON s.id=p.supplier_id GROUP BY s.id ORDER BY sum_stock ASC"));
+        $numberOfData = count($data);
         return view('product.leaststock', compact('data', 'numberOfData'));
     }
 
